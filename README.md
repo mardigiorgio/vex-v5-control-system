@@ -11,7 +11,7 @@ This repository contains the complete control system code for a VEX Robotics com
 - **User Control**: Manual control mappings for real-time operation during driver control periods.
 
 ## Hardware Requirements
-- VEX V5 motors (specific ports and configurations detailed in the code)
+- VEX V5 motors
 - VEX Inertial Sensor
 - VEX Brain
 - VEX Controller
