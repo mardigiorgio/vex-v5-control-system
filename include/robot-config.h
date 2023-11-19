@@ -10,10 +10,10 @@ extern motor BRMotor;
 extern motor FLMotor;
 extern motor FRMotor;
 
-extern motor HLeft;
-extern motor HRight;
+extern motor SLeft;
+extern motor SRight;
 
-extern motor_group Hitter;
+extern motor_group Slapper;
 /*
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

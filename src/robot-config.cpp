@@ -17,10 +17,10 @@ motor FLMotor(PORT20, ratio18_1, true);
 motor FRMotor(PORT11, ratio18_1);
 
 //Hitter
-motor HLeft(PORT19, ratio36_1, true);
-motor HRight(PORT13, ratio36_1);
+motor SLeft(PORT19, ratio36_1, true);
+motor SRight(PORT13, ratio36_1);
 
-motor_group Hitter = motor_group(HLeft, HRight);
+motor_group Slapper = motor_group(SLeft, SRight);
 
 
 // VEXcode generated functions

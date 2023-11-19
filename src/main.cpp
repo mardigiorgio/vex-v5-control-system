@@ -24,9 +24,6 @@ PORT12,
 //Gyro scaling factor to reduce error
 360,
 
-
-//For no tracking only adjust the forward tracker center distance.
-
 //holonomatic drives only: input drive motors by position.
 //LF:      //RF:    
 PORT1,     -PORT2,
@@ -34,6 +31,7 @@ PORT1,     -PORT2,
 //LB:      //RB: 
 PORT3,     -PORT4,
 
+//For no tracking only adjust the forward tracker center distance.
 //Forward tracker port
 PORT2,
 
@@ -51,7 +49,6 @@ PORT5,
 
 //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
 0.96
-
 );
 
 int current_auton_selection = 0;
@@ -132,18 +129,17 @@ void autonomous(void) {
 
 void usercontrol(void) {
   chassis.set_coordinates(0, 0, 0);
-  Brain.Screen.clearScreen();
   while (1) {
     chassis.control_arcade();
     
     if(Controller.ButtonDown.pressing()) {
-      chassis.drive_to_point(0, 0, 6, 12, 5, 5000, 30000, 0.45 , 0.2, 0.2, 0, 0.5, 0.2, 0.5, 0);
+      chassis.drive_to_point(0, 0);
     } 
 
     if(Controller.ButtonR1.pressing()) {
-      Hitter.spin(forward, 8, volt);
+      Slapper.spin(forward, 12, volt);
     } else {
-      Hitter.spin(forward, 0, volt);
+      Slapper.spin(forward, 0, volt);
     }
 
     wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
