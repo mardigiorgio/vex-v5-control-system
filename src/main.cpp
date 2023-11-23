@@ -4,7 +4,7 @@ using namespace vex;
 competition Competition;
 
 Drive chassis(
-TANK_TWO_ROTATION,
+ZERO_TRACKER_NO_ODOM,
 
 //Left Motors:
 motor_group(BLMotor, FLMotor),
@@ -51,7 +51,6 @@ PORT5,
 5.2
 );
 
-int flapToggle = 0;
 int current_auton_selection = 0;
 bool auto_started = false;
 
@@ -64,13 +63,13 @@ void pre_auton(void) {
     Brain.Screen.clearScreen();           
     switch(current_auton_selection){      
       case 0:
-        Brain.Screen.printAt(50, 50, "Drive Test");
+        Brain.Screen.printAt(50, 50, "No Auton");
         break;
       case 1:
-        Brain.Screen.printAt(50, 50, "Drive Test");
+        Brain.Screen.printAt(50, 50, "Programming Skills");
         break;
       case 2:
-        Brain.Screen.printAt(50, 50, "Turn Test");
+        Brain.Screen.printAt(50, 50, "Five Point Push");
         break;
       case 3:
         Brain.Screen.printAt(50, 50, "Swing Test");
@@ -102,10 +101,10 @@ void autonomous(void) {
   auto_started = true;
   switch(current_auton_selection){  
     case 0:
-      odom_test(); //default auton
+      //default auton
       break;        
     case 1:         
-      drive_test();
+      //Programming Skills
       break;
     case 2:
       turn_test();
@@ -129,23 +128,12 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
-  LFlap.set(false);
-  RFlap.set(false);
-  chassis.set_coordinates(0, 0, 0);
+  chassis.drive_max_voltage = 10;
   while (1) {
     chassis.control_arcade();
 
-    if(Controller.ButtonR2.pressing()) {
-      LFlap.set(false);
-      RFlap.set(false);
-    } else {
-      LFlap.set(true);
-      RFlap.set(true);
-    }
-
-
     if(Controller.ButtonR1.pressing()) {
-      Slapper.spin(forward, 12, volt);
+      Slapper.spin(forward, 10, volt);
     } else {
       Slapper.spin(forward, 0, volt);
     }

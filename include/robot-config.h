@@ -14,8 +14,6 @@ extern motor SLeft;
 extern motor SRight;
 
 extern motor_group Slapper;
-extern digital_out LFlap;
-extern digital_out RFlap;
 /*
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

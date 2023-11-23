@@ -22,13 +22,7 @@ motor SRight(PORT13, ratio36_1);
 
 motor_group Slapper(SLeft, SRight);
 
-digital_out LFlap(Brain.ThreeWirePort.B);
-digital_out RFlap(Brain.ThreeWirePort.C);
-
 // VEXcode generated functions
-
-
-
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
