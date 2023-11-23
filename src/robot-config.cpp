@@ -20,8 +20,10 @@ motor FRMotor(PORT11, ratio18_1);
 motor SLeft(PORT19, ratio36_1, true);
 motor SRight(PORT13, ratio36_1);
 
-motor_group Slapper = motor_group(SLeft, SRight);
+motor_group Slapper(SLeft, SRight);
 
+digital_out LFlap(Brain.ThreeWirePort.B);
+digital_out RFlap(Brain.ThreeWirePort.C);
 
 // VEXcode generated functions
 

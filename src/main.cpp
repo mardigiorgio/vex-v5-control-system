@@ -36,10 +36,10 @@ PORT3,     -PORT4,
 PORT2,
 
 //Input the Forward Tracker diameter (reverse it to make the direction switch):
--2.58,
+2.58,
 
 //Input Forward Tracker center distance (a positive distance corresponds to a tracker on the right side of the robot, negative is left.)
--1.93,
+1.858,
 
 //Sideways Tracker Port
 PORT5,
@@ -48,9 +48,10 @@ PORT5,
 2.58,
 
 //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
-0.96
+5.2
 );
 
+int flapToggle = 0;
 int current_auton_selection = 0;
 bool auto_started = false;
 
@@ -128,13 +129,20 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
+  LFlap.set(false);
+  RFlap.set(false);
   chassis.set_coordinates(0, 0, 0);
   while (1) {
     chassis.control_arcade();
-    
-    if(Controller.ButtonDown.pressing()) {
-      chassis.drive_to_point(0, 0);
-    } 
+
+    if(Controller.ButtonR2.pressing()) {
+      LFlap.set(false);
+      RFlap.set(false);
+    } else {
+      LFlap.set(true);
+      RFlap.set(true);
+    }
+
 
     if(Controller.ButtonR1.pressing()) {
       Slapper.spin(forward, 12, volt);
