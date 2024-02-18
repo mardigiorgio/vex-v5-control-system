@@ -1,7 +1,7 @@
 #include "vex.h"
 
 void default_constants(){
-  chassis.set_drive_constants(10, 1.2, 0, 10, 0);
+  chassis.set_drive_constants(12, 1.2, 0, 10, 0);
   chassis.set_heading_constants(6, .4, 0, 1, 0);
   chassis.set_turn_constants(12, 0.5, .03, 3, 15);
   chassis.set_swing_constants(12, 1.2, .001, 2, 15);
@@ -85,7 +85,7 @@ void push() {
 
 void skills() {
   // Set Robot Position at (0,0) Facing the goal
-  chassis.set_coordinates(0, 0, 290);
+  chassis.set_coordinates(0, 0, 325);
 
   // Firing Sequence
   /* The firing sequence, responsible for shooting game objects, is not implemented yet. */
@@ -93,19 +93,26 @@ void skills() {
   // Drive Away from Match Load Bar
   chassis.drive_distance(15);
 
+  chassis.turn_to_angle(15);
+  chassis.drive_distance(68);
+
   // Drive Under Elevation Bar
-  chassis.drive_to_point(0, 300);
+  chassis.drive_to_point(4, 90);
 
   // Drive In Front of the Goal
-  chassis.drive_to_point(-100, 200);
+  chassis.right_swing_to_angle(270);
+  chassis.drive_to_point(-56, 70);
 
   // Face Goal
-  chassis.turn_to_point(-100, 500);
+  chassis.turn_to_point(-56, 100);
 
   // Extend Pneumatic Wings
   /* The method responsible for extending pneumatic wings is not implemented yet. */
+  LWing.set(true);
+  RWing.set(true);
 
   // Push Balls into Goal
   // Verbose Explanation: Drive 70 units at a 0-degree heading, with a maximum drive and heading voltage of 12
-  chassis.drive_distance(70, 0, 12, 12);
+  chassis.set_drive_constants(12, 2, 0, 10, 0);
+  chassis.drive_distance(55, 0, 12, 12);
 }

@@ -60,22 +60,10 @@ bool isLWingOpen = false;
 bool prevR2State = false;
 bool prevAState = false;
 
-void toggleRWing() {
-  isRWingOpen = !isRWingOpen;
-  RWing.set(isRWingOpen);
-}
-
-void toggleLWing() {
-  isLWingOpen = !isLWingOpen;
-  LWing.set(isLWingOpen);
-}
-
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   default_constants();
-  LWing.set(false);
-  RWing.set(false);
 
   while(auto_started == false){            
     Brain.Screen.clearScreen();           
@@ -119,6 +107,7 @@ void autonomous(void) {
   auto_started = true;
   switch(current_auton_selection){  
     case 0:
+      skills();
       break;        
     case 1:         
       push();
@@ -146,32 +135,14 @@ void autonomous(void) {
 
 void usercontrol(void) {
   chassis.set_coordinates(0,0,0);
-  chassis.drive_max_voltage = 10;
+  chassis.drive_max_voltage = 12;
   while (1) {
     chassis.control_arcade();
-
-    bool currentR2State = Controller.ButtonR2.pressing();
-    if(currentR2State && !prevR2State) {
-      toggleRWing();
-      toggleLWing();
-    }
-    prevR2State = currentR2State; 
-
-
-    bool currentAState = Controller.ButtonA.pressing();
-    if(currentAState && !prevAState) {
-      toggleRWing();
-    }
-    prevAState = currentAState;
 
     if(Controller.ButtonR1.pressing()) {
       Slapper.spin(forward, 12, volt);
     } else {
       Slapper.spin(forward, 0, volt);
-    }
-
-    if(Controller.ButtonA.pressing()){
-      chassis.drive_to_point(0,0);
     }
 
     wait(20, msec);

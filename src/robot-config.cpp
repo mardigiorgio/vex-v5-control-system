@@ -19,14 +19,15 @@ motor MLMotor(PORT2, ratio18_1, false);
 motor MRMotor(PORT3, ratio18_1, true);
 
 
-//Hitter
-motor SLeft(PORT5, ratio36_1, true);
-motor SRight(PORT3, ratio36_1);
+//Ports need updating
+motor SLeft(PORT6, ratio36_1, true);
+motor SRight(PORT9, ratio36_1);
 
 motor_group Slapper(SLeft, SRight);
 
-digital_out LWing(Brain.ThreeWirePort.A);
-digital_out RWing(Brain.ThreeWirePort.B);
+//needs update
+digital_out LWing(Brain.ThreeWirePort.C);
+digital_out RWing(Brain.ThreeWirePort.D);
 // VEXcode generated functions
 /*
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
