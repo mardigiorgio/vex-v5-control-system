@@ -75,7 +75,7 @@ void pre_auton(void) {
         Brain.Screen.printAt(50, 50, "5 PT Push");
         break;
       case 2:
-        Brain.Screen.printAt(50, 50, "TProgramming Skills");
+        Brain.Screen.printAt(50, 50, "Programming Skills");
         break;
       case 3:
         Brain.Screen.printAt(50, 50, "Swing Test");
@@ -107,7 +107,6 @@ void autonomous(void) {
   auto_started = true;
   switch(current_auton_selection){  
     case 0:
-      skills();
       break;        
     case 1:         
       push();
