@@ -26,8 +26,8 @@ motor SRight(PORT9, ratio36_1);
 motor_group Slapper(SLeft, SRight);
 
 //needs update
-digital_out LWing(Brain.ThreeWirePort.C);
-digital_out RWing(Brain.ThreeWirePort.D);
+digital_out LWing(Brain.ThreeWirePort.G);
+digital_out RWing(Brain.ThreeWirePort.H);
 // VEXcode generated functions
 /*
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

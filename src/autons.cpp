@@ -84,35 +84,62 @@ void push() {
 }
 
 void skills() {
-  // Set Robot Position at (0,0) Facing the goal
-  chassis.set_coordinates(0, 0, 325);
+  default_constants();
 
-  // Firing Sequence
-  /* The firing sequence, responsible for shooting game objects, is not implemented yet. */
+  //Sets the bots coords to 0,0 at 0 deg
+  chassis.set_coordinates(0,0,0);
 
-  // Drive Away from Match Load Bar
+  //Turn and back up to touch the match load bar
+  chassis.turn_to_angle(-20);
+  chassis.drive_distance(-4);
+
+  //Start spinning the slapper
+  Slapper.spin(forward, 15, volt);
+
+  //Stop the slapper
+  Slapper.spin(forward, 0, volt);
+
+  //Drive away from the match load ar
   chassis.drive_distance(15);
+  chassis.turn_to_angle(25);
+  chassis.drive_distance(45);
 
-  chassis.turn_to_angle(15);
-  chassis.drive_distance(68);
+  //Drive under the elevation bar
+  chassis.turn_to_point(7,80);
+  chassis.drive_to_point(7,80);
 
-  // Drive Under Elevation Bar
-  chassis.drive_to_point(4, 90);
+  //Turn towards the goal and group the balls up on the right side of the goal
+  chassis.right_swing_to_angle(-40);
+  LWing.set(true);
+  RWing.set(true);
+  chassis.drive_distance(70, -40, 12, 12);
+  RWing.set(false);
 
-  // Drive In Front of the Goal
-  chassis.right_swing_to_angle(270);
-  chassis.drive_to_point(-56, 70);
+  //Face right side of goal and push balls in
+  chassis.right_swing_to_angle(-85);
+  chassis.drive_distance(-15);
+  chassis.drive_distance(45, -85, 12, 12, 0, 0, 2000);
+  
+  //Drive away from the goal and towards the long bar
+  chassis.drive_distance(-15);
+  LWing.set(false);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(-90, 0, 12, 12);
 
-  // Face Goal
-  chassis.turn_to_point(-56, 100);
+  //Drive towards the middle of field
+  chassis.left_swing_to_angle(-90);
+  chassis.drive_distance(80, -90, 12, 12);
 
-  // Extend Pneumatic Wings
-  /* The method responsible for extending pneumatic wings is not implemented yet. */
+  //Turn towards goal
+  chassis.left_swing_to_angle(0);
+
+  //Open Wings
   LWing.set(true);
   RWing.set(true);
 
-  // Push Balls into Goal
-  // Verbose Explanation: Drive 70 units at a 0-degree heading, with a maximum drive and heading voltage of 12
-  chassis.set_drive_constants(12, 2, 0, 10, 0);
-  chassis.drive_distance(55, 0, 12, 12);
+  //Drive backwards for more accel time
+  chassis.drive_distance(-20, 0, 12, 12);
+
+  //Push into goal
+  chassis.drive_distance(60, 0, 12, 12);
 }
