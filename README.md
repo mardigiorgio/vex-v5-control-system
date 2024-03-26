@@ -21,3 +21,16 @@ This repository contains the complete control system code for a VEX Robotics com
 
 ## Contributing
 Contributions to this project are welcome. Please fork the repository and submit pull requests for any enhancements or bug fixes.
+
+# Resilience Unbound
+
+In the eleventh hour, against all odds we found,  
+Triumph whispered in moments profound.  
+Through trials and doubts, our resolve unwound,  
+Victory embraced on uncertain ground.
+
+In the final stretch, courage unbound,  
+A testament to resilience, unconfined.  
+Not in the start, but in the grind,  
+We rose, defying the constraints that bind.
+
