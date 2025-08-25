@@ -42,21 +42,21 @@ void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   default_constants();
-
-  while(auto_started == false){            
-    Brain.Screen.clearScreen();           
-    switch(current_auton_selection){      
+  // Press the VEX Brain screen to cycle through autonomous routines
+  while(auto_started == false){
+    Brain.Screen.clearScreen();
+    switch(current_auton_selection){
       case 0:
-        Brain.Screen.printAt(50, 50, "Descore Winpoint");
+        Brain.Screen.printAt(50, 50, "Drive Test");
         break;
       case 1:
-        Brain.Screen.printAt(50, 50, "2 PT Push + Lineup");
+        Brain.Screen.printAt(50, 50, "Turn Test");
         break;
       case 2:
-        Brain.Screen.printAt(50, 50, "5 Point Push(NO BAR TOUCH)");
+        Brain.Screen.printAt(50, 50, "Odom Test");
         break;
       case 3:
-        Brain.Screen.printAt(50, 50, "WinPoint(5 POINT PUSH + BAR TOUCH)");
+        Brain.Screen.printAt(50, 50, "Full Test");
         break;
 
     }
@@ -72,19 +72,19 @@ void pre_auton(void) {
 
 void autonomous(void) {
   auto_started = true;
-  switch(current_auton_selection){  
+  switch(current_auton_selection){
     case 0:
-      descore_winpoint();
-      break;        
-    case 1:         
-      push();
+      drive_test();
+      break;
+    case 1:
+      turn_test();
       break;
     case 2:
-      push_bad();
-      break; 
+      odom_test();
+      break;
     case 3:
-      winpoint();
-  } 
+      full_test();
+  }
 }
 
 void usercontrol(void) {
@@ -125,5 +125,3 @@ int main() {
     wait(100, msec);
   }
 }
-
-//END 23-24 SEASON
