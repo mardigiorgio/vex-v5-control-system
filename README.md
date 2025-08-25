@@ -1,36 +1,42 @@
-# VEX Robotics Competition Control System
+# VEX Robotics Control System
 
-## Introduction
-This repository contains the complete control system code for a VEX Robotics competition robot. The system is designed to work with VEX V5 components and includes modules for motor control, sensor integration, autonomous routines, and user control interfaces.
+## Overview
+This repository provides a reusable control system for VEX V5 robots. It includes PID-based motion control, odometry tracking and a simple autonomous routine selector.
 
-## Features
-- **PID Control**: Implementation of Proportional, Integral, Derivative (PID) controllers for precise movement control.
-- **Drive System**: Versatile driving commands for different modes including tank, arcade, and holonomic controls.
-- **Odometry System**: Accurate tracking of the robot's position and orientation using sensory input.
-- **Autonomous Routines**: Pre-programmed routines for autonomous operations during competitions.
-- **User Control**: Manual control mappings for real-time operation during driver control periods.
+## Getting Started
+1. Clone this repository and open it in VEXcode Pro V5.
+2. Connect your hardware to match the port assignments in `include/robot-config.h`.
+3. Update the `Drive` constructor in `src/main.cpp` to match your drivetrain's geometry and sensor ports.
+4. Build and download the project to the VEX Brain.
+5. Before a match, tap the VEX Brain screen to cycle through the available autonomous routines.
 
-## Hardware Requirements
-- VEX V5 motors
-- VEX Inertial Sensor
-- VEX Brain
-- VEX Controller
+## Drive Constructor
+The `Drive` object configures the drivetrain and tracking sensors. An example setup is shown below:
 
-## Software Requirements
-- VEXcode Pro V5 or similar VEX programming environment
+```
+Drive chassis(
+    TANK_ONE_ROTATION,                 // drive configuration
+    motor_group(BLMotor, FLMotor, MLMotor), // left motors
+    motor_group(BRMotor, FRMotor, MRMotor), // right motors
+    PORT16,                            // inertial sensor port
+    3.08,                              // wheel diameter (in)
+    2.5,                               // external gear ratio
+    360,                               // gyro scale
+    PORT1, -PORT2, PORT3, -PORT4,      // individual motor ports (sign indicates direction)
+    PORT5, 2.75, 1,                    // forward tracking wheel port, diameter, offset
+    PORT5, 2.75, 5.2                   // sideways tracking wheel port, diameter, offset
+);
+```
 
-## Contributing
-Contributions to this project are welcome. Please fork the repository and submit pull requests for any enhancements or bug fixes.
+Key drive methods include:
+- `drive_distance(distance, heading)` – drive a specified distance while holding a heading.
+- `turn_to_angle(angle)` – rotate the robot to an absolute angle.
+- `drive_to_point(x, y)` – move to a field coordinate using odometry.
+- `control_arcade()` – enable arcade style driver control.
 
-# Resilience Unbound
+## Autonomous Selection
+During `pre_auton`, the Brain's touchscreen acts as an auton cycler. Each tap advances to the next autonomous routine and displays its name on-screen.
 
-In the eleventh hour, against all odds we found,  
-Triumph whispered in moments profound.  
-Through trials and doubts, our resolve unwound,  
-Victory embraced on uncertain ground.
-
-In the final stretch, courage unbound,  
-A testament to resilience, unconfined.  
-Not in the start, but in the grind,  
-We rose, defying the constraints that bind.
+## License
+This project is released as open source for educational use.
 
