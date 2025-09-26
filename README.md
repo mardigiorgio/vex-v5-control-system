@@ -1,17 +1,17 @@
-# VEX Robotics Control System
+# VEX V5 Control System — Robotics Control Framework
 
 ## Overview
-This repository provides a reusable control system for VEX V5 robots. It includes PID-based motion control, odometry tracking and a simple autonomous routine selector.
+A demonstration of advanced control system concepts for VEX V5 robotics, featuring PID-based motion control, odometry tracking, and autonomous routine selection. This framework showcases modern robotics control algorithms and software architecture patterns.
 
-## Getting Started
-1. Clone this repository and open it in VEXcode Pro V5.
-2. Connect your hardware to match the port assignments in `include/robot-config.h`.
-3. Update the `Drive` constructor in `src/main.cpp` to match your drivetrain's geometry and sensor ports.
-4. Build and download the project to the VEX Brain.
-5. Before a match, tap the VEX Brain screen to cycle through the available autonomous routines.
+## Features
+- PID-based motion control with tunable parameters
+- Real-time odometry tracking using wheel encoders and gyroscope
+- Autonomous routine selector with touchscreen interface
+- Modular drivetrain configuration system
+- Comprehensive motion control API
 
-## Drive Constructor
-The `Drive` object configures the drivetrain and tracking sensors. An example setup is shown below:
+## Technical Architecture
+The `Drive` object configures the drivetrain and tracking sensors. The system demonstrates:
 
 ```
 Drive chassis(
@@ -28,14 +28,14 @@ Drive chassis(
 );
 ```
 
-Key drive methods include:
-- `drive_distance(distance, heading)` – drive a specified distance while holding a heading.
-- `turn_to_angle(angle)` – rotate the robot to an absolute angle.
-- `drive_to_point(x, y)` – move to a field coordinate using odometry.
-- `control_arcade()` – enable arcade style driver control.
+Key control system methods:
+- `drive_distance(distance, heading)` — precise distance control with heading correction
+- `turn_to_angle(angle)` — absolute angle positioning using gyroscope feedback
+- `drive_to_point(x, y)` — coordinate-based navigation with odometry
+- `control_arcade()` — manual control interface
 
-## Autonomous Selection
-During `pre_auton`, the Brain's touchscreen acts as an auton cycler. Each tap advances to the next autonomous routine and displays its name on-screen.
+## Control System Features
+The framework demonstrates advanced robotics concepts including closed-loop control, sensor fusion, and autonomous behavior selection through an interactive touchscreen interface.
 
 ## License
 This project is released as open source for educational use.
